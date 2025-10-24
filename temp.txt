@@ -1,0 +1,66 @@
+%4 = shl nuw i32 %0, 1
+%5 = add nsw i32 %0, -1
+%6 = zext i32 %5 to i33
+%7 = add nsw i32 %0, -2
+%8 = zext i32 %7 to i33
+%9 = mul i33 %6, %8
+%10 = lshr i33 %9, 1
+%11 = trunc nuw i33 %10 to i32
+%12 = add i32 %4, %11
+%13 = add i32 %12, -1
+br label %14
+
+
+commands:
+opt -passes=dot-cfg test.O1.ll -disable-output
+dot -Tpng main.dot -o main.png
+
+for basic programs like
+function call
+loops
+...
+
+there is no difference in optimization between O1, 2 and 3
+-----------------------------------------------------------------
+For simple function call, arithmetic with variables
+The optimization seems to be to statically evaluting the value and return them
+e.g.
+int helper() {
+    return 9;
+}
+
+int test() {
+int x = 5;
+int y = helper();
+int z = x + y;
+return z;
+}
+
+just ends up being optimized to:
+def i32 test () {
+ret i32 14
+}
+-----------------------------------------------------------------
+For loops
+phi nodes were used to optimize.
+Equations are used to optimize common patterns! 
+e.g. for sum of natural numbers, it uses n(n + 1) / 2
+
+
+Try:
+- Irregular predicate (predicate cannot be expressed a simple function) + mixed operations 
+- Memory dependent loop (use an array)
+
+
+
+-----------------------------------------------------------------
+For branches
+-----------------------------------------------------------------
+For double loops
+-----------------------------------------------------------------
+For recursive function calls
+-----------------------------------------------------------------
+Heap memory? (variables usually are allocated to the stack)
+-----------------------------------------------------------------
+For triple loops
+

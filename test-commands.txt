@@ -1,0 +1,17 @@
+// no optimization
+clang++ -std=c++17 -O0 -S -emit-llvm test.cpp -o test.O0.ll
+
+// O1
+clang++ -std=c++17 -O1 -S -emit-llvm test.cpp -o test.O1.ll
+
+//O2
+clang++ -std=c++17 -O2 -S -emit-llvm test.cpp -o test.O2.ll
+
+//O3
+clang++ -std=c++17 -O3 -S -emit-llvm test.cpp -o test.O3.ll
+
+// shortcut
+clang++ -std=c++17 -O0 -S -emit-llvm test.cpp -o test.O0.ll \
+&& clang++ -std=c++17 -O1 -S -emit-llvm test.cpp -o test.O1.ll \
+&& clang++ -std=c++17 -O2 -S -emit-llvm test.cpp -o test.O2.ll \
+&& clang++ -std=c++17 -O3 -S -emit-llvm test.cpp -o test.O3.ll
