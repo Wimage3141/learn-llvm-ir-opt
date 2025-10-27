@@ -1,10 +1,37 @@
 #include <iostream>
+#include <vector>
+#include <array>
 // #include <cctype>
 // #include <algorithm>
 
 using namespace std;
 
+const int N = 10;
+
 // Implement a simple sort algorithm!
+
+
+int triple_loop(int arr[][N][N]) {
+    int sum = 0;
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            for(int k = 0; k < N; k++) {
+                sum += arr[i][j][k];
+            }
+        }
+    }
+    return sum;
+}
+
+int double_loop(int arr[][N]) {
+    int sum = 0;
+    for(int i = 0; i < N; i++) {
+        for(int j = 0; j < N; j++) {
+            sum += arr[i][j];
+        }
+    }
+    return sum;
+}
 
 int sum_all_elements_of_array(int *arr, int n) {
     int sum = 0;
