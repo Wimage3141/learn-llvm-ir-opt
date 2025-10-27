@@ -12,8 +12,8 @@ br label %14
 
 
 commands:
-opt -passes=dot-cfg test.O1.ll -disable-output
-dot -Tpng main.dot -o main.png
+opt -passes=dot-cfg bin/test.O1.ll -disable-output
+dot -Tpng main.dot -o CFG/main.png
 
 for basic programs like
 function call
@@ -48,8 +48,15 @@ e.g. for sum of natural numbers, it uses n(n + 1) / 2
 
 
 Try:
-- Irregular predicate (predicate cannot be expressed a simple function) + mixed operations 
-- Memory dependent loop (use an array)
+1. Irregular predicate (predicate cannot be expressed a simple function) + mixed operations 
+2. Memory dependent loop (use an array)
+
+Irregular predicate:
+    - Phi nodes remove the need to save and load to memory using alloca
+    - 
+
+
+
 
 
 

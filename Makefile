@@ -1,29 +1,33 @@
 CXX = clang++
 CXXFLAGS = -std=c++17 -S -emit-llvm
 SRC = test.cpp
+BIN_DIR = bin
 
-all: test.O0.ll test.O1.ll test.O2.ll test.O3.ll
+all: $(BIN_DIR) $(BIN_DIR)/test.O0.ll $(BIN_DIR)/test.O1.ll $(BIN_DIR)/test.O2.ll $(BIN_DIR)/test.O3.ll
 
-run: test_run
-	./test_run
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
 
-test_run: test_run.o
+run: $(BIN_DIR)/test_run
+	./$(BIN_DIR)/test_run
+
+$(BIN_DIR)/test_run: $(BIN_DIR)/test_run.o
 	$(CXX) $< -o $@
 
-test_run.o: $(SRC)
+$(BIN_DIR)/test_run.o: $(SRC) | $(BIN_DIR)
 	$(CXX) -c $< -o $@
 
-test.O0.ll: $(SRC)
+$(BIN_DIR)/test.O0.ll: $(SRC) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -O0 $< -o $@
 
-test.O1.ll: $(SRC)
+$(BIN_DIR)/test.O1.ll: $(SRC) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -O1 $< -o $@
 
-test.O2.ll: $(SRC)
+$(BIN_DIR)/test.O2.ll: $(SRC) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -O2 $< -o $@
 
-test.O3.ll: $(SRC)
+$(BIN_DIR)/test.O3.ll: $(SRC) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -O3 $< -o $@
 
 clean:
-	rm -f *.ll
+	rm -rf $(BIN_DIR)

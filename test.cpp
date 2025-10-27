@@ -6,6 +6,14 @@ using namespace std;
 
 // Implement a simple sort algorithm!
 
+int sum_all_elements_of_array(int *arr, int n) {
+    int sum = 0;
+    for(int i = 0; i < n; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
+
 int sum_from_k_to_n(int k, int n) {
     int sum = 0;
     for(int i = k; i <= n; i++) {
