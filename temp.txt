@@ -50,17 +50,19 @@ e.g. for sum of natural numbers, it uses n(n + 1) / 2
 Try:
 1. Irregular predicate (predicate cannot be expressed a simple function) + mixed operations 
 2. Memory dependent loop (use an array)
-3. Double Loop
+3. Double Loop and Triple Loop
 
 Irregular predicate:
     - mem2reg: Phi nodes remove the need to save and load to memory using alloca
     - CSE: remove redundant expressions, e.g. t1 = t2 + t3, t4 = t2 + t3, t4 is redundant
-    - Strength reduction: x+x -> shl 1
+    - Strength reduction: x+x -> shl 1, faster processing in CPU, benefits pipelining
     - preheader check: before starting the loop, check if it'll even iterate e.g. i > n when exit condition = i <= n
-    - select: 
+    - select: short conditional (if-else) are converted to select which helps with vectorization/unrolling later.
 
 Memory dependent loop:
-    - 
+    ** Optimization is vastly different based on known (compile-time) and unknown (run-time) **
+    Known array size (compile-time evaluation of array size):
+        - 
 
 
 

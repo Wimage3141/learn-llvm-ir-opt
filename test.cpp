@@ -6,10 +6,17 @@
 
 using namespace std;
 
-const int N = 10;
+const int N = 1000;
 
 // Implement a simple sort algorithm!
 
+int runtime_single_loop(int *arr, int n) {
+    int sum = 0;
+    for(int i = 0; i < n; i++) {
+        sum += arr[i];
+    }
+    return sum;
+}
 
 int triple_loop(int arr[][N][N]) {
     int sum = 0;
@@ -33,9 +40,9 @@ int double_loop(int arr[][N]) {
     return sum;
 }
 
-int sum_all_elements_of_array(int *arr, int n) {
+int single_loop(int arr[N]) {
     int sum = 0;
-    for(int i = 0; i < n; i++) {
+    for(int i = 0; i < N; i++) {
         sum += arr[i];
     }
     return sum;
